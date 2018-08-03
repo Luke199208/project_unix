@@ -116,12 +116,12 @@ public class ExceptionLogger {
         Object obj = null;
         try {
             long startTime = System.currentTimeMillis();
-            System.out.println("method start time" + startTime);
+            System.out.println("method start time: " + startTime);
             System.out.println("方法开始执行之前");
             obj = point.proceed();
             System.out.println("方法开始执行之后");
             long endTime = System.currentTimeMillis();
-            System.out.println("method end time" + endTime);
+            System.out.println("method end time: " + endTime);
             System.out.println("历时: " + (endTime - startTime));
         } catch (Throwable e) {
             System.out.println("e.printStackTrace()----WRONG MESSAGE");

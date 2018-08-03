@@ -56,5 +56,27 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
+    <!-- 注册拦截器 -->
+    <!--<mvc:interceptors>-->
+        <!--&lt;!&ndash; 登录检查拦截器&ndash;&gt;-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<mvc:exclude-mapping path="/login/validate.do"/>-->
+            <!--<mvc:exclude-mapping path="/login/VerifyCodeServlet.do"/>-->
+            <!--<bean class="com.luke.interceptor.LoginInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+
+        <!--&lt;!&ndash; 判断当前模块拦截器 &ndash;&gt;-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<bean class="com.luke.interceptor.CurrentModuleInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+        <!--&lt;!&ndash; 权限检查拦截器-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<mvc:exclude-mapping path="/login/*"/>-->
+            <!--<bean class="com.lanou.interceptor.CheckModuleInterceptor"/>-->
+        <!--</mvc:interceptor>&ndash;&gt;-->
+    <!--</mvc:interceptors>-->
 
 </beans>
