@@ -3,14 +3,17 @@ package com.luke.cost.controller;
 import com.luke.cost.bean.Cost;
 import com.luke.cost.bean.CostPage;
 import com.luke.cost.service.CostService;
-import com.luke.cost.service.impl.CostServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /***
  * com.luke.cost.controller
@@ -47,6 +50,86 @@ public class CostController {
         return "cost/cost_list";
     }
 
+    //easyui 测试
+    @RequestMapping(value = "/findAllEU.do",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> findAllEU(){
+        System.out.println(1);
+        CostPage page = service.findAll();
+        List<Cost> costs = page.getList();
+        Map<String,Object> map = new HashMap<>();
+        map.put("total",costs.size());
+        map.put("rows",costs);
+        return map;
+    }
+
+    @RequestMapping(value = "/treeData.do",method = RequestMethod.POST)
+    @ResponseBody
+    public String tree(){
+        String str = "[{\n" +
+                "\t\"id\":1,\n" +
+                "\t\"text\":\"My Documents\",\n" +
+                "\t\"children\":[{\n" +
+                "\t\t\"id\":11,\n" +
+                "\t\t\"text\":\"Photos\",\n" +
+                "\t\t\"state\":\"closed\",\n" +
+                "\t\t\"children\":[{\n" +
+                "\t\t\t\"id\":111,\n" +
+                "\t\t\t\"text\":\"Friend\"\n" +
+                "\t\t},{\n" +
+                "\t\t\t\"id\":112,\n" +
+                "\t\t\t\"text\":\"Wife\"\n" +
+                "\t\t},{\n" +
+                "\t\t\t\"id\":113,\n" +
+                "\t\t\t\"text\":\"Company\"\n" +
+                "\t\t}]\n" +
+                "\t},{\n" +
+                "\t\t\"id\":12,\n" +
+                "\t\t\"text\":\"Program Files\",\n" +
+                "\t\t\"state\":\"closed\",\n" +
+                "\t\t\"children\":[{\n" +
+                "\t\t\t\"id\":121,\n" +
+                "\t\t\t\"text\":\"Intel\"\n" +
+                "\t\t},{\n" +
+                "\t\t\t\"id\":122,\n" +
+                "\t\t\t\"text\":\"Java\"\n" +
+                "\t\t},{\n" +
+                "\t\t\t\"id\":123,\n" +
+                "\t\t\t\"text\":\"Microsoft Office\"\n" +
+                "\t\t},{\n" +
+                "\t\t\t\"id\":124,\n" +
+                "\t\t\t\"text\":\"Games\"\n" +
+                "\t\t}]\n" +
+                "\t},{\n" +
+                "\t\t\"id\":16,\n" +
+                "\t\t\"text\":\"Actions\",\n" +
+                "\t\t\"children\":[{\n" +
+                "\t\t\t\"text\":\"Add\",\n" +
+                "\t\t\t\"iconCls\":\"icon-add\"\n" +
+                "\t\t},{\n" +
+                "\t\t\t\"text\":\"Remove\",\n" +
+                "\t\t\t\"iconCls\":\"icon-remove\"\n" +
+                "\t\t},{\n" +
+                "\t\t\t\"text\":\"Save\",\n" +
+                "\t\t\t\"iconCls\":\"icon-save\"\n" +
+                "\t\t},{\n" +
+                "\t\t\t\"text\":\"Search\",\n" +
+                "\t\t\t\"iconCls\":\"icon-search\"\n" +
+                "\t\t}]\n" +
+                "\t},{\n" +
+                "\t\t\"id\":13,\n" +
+                "\t\t\"text\":\"index.html\"\n" +
+                "\t},{\n" +
+                "\t\t\"id\":14,\n" +
+                "\t\t\"text\":\"about.html\"\n" +
+                "\t},{\n" +
+                "\t\t\"id\":15,\n" +
+                "\t\t\"text\":\"welcome.html\"\n" +
+                "\t}]\n" +
+                "}]\n";
+        return str;
+    }
+
     //点击页码查询
     @RequestMapping("/findCostByLimit.do")
     public String findCostByLimit(@RequestParam String currentPage, Model model){
@@ -59,7 +142,6 @@ public class CostController {
 
         return "cost/cost_list";
     }
-
 
     @RequestMapping("/finddetail.do")
     public String finddetail(@RequestParam String id , Model model){

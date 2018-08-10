@@ -1,12 +1,13 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" />
         <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.js"></script>
         <script language="javascript" type="text/javascript">
             //排序按钮的点击事件
@@ -59,7 +60,7 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="../../../images/logo.png" alt="logo" class="left"/>
             <a href="<c:url value="/login.jsp"/>">[退出]</a>
         </div>
         <!--Logo区域结束-->
@@ -67,8 +68,8 @@
         <div id="navi">                        
             <ul id="menu">
                 <li><a href="<c:url value="/main/toMain.do"/>" class="index_off"></a></li>
-                <li><a href="../role/role_list.jsp" class="role_off"></a></li>
-                <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
+                <li><a href="<c:url value="/role/findAll.do"/>" class="role_off"></a></li>
+                <li><a href="<c:url value="/admin/findAll.do"/>" class="admin_off"></a></li>
                 <li><a href="<c:url value="/cost/findAll.do"/>" class="fee_on"></a></li>
                 <li><a href="<c:url value="/account/findAll.do"/>" class="account_off"></a></li>
                 <li><a href="<c:url value="/service/findAll.do"/>" class="service_off"></a></li>
@@ -93,7 +94,7 @@
                 </div> 
                 <!--启用操作的操作提示-->
                 <div id="operate_result_info" class="operate_success">
-                    <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
+                    <img src="../../../images/close.png" onclick="this.parentNode.style.display='none';" />
                     ${msg}
                 </div>    
                 <!--数据区域：用表格展示数据-->     

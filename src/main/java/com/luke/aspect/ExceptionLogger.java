@@ -48,12 +48,6 @@ public class ExceptionLogger {
 
     @Before("within(com.luke.*.*.*)")
     public void before(JoinPoint joinPoint) {
-        Logger logger = Logger.getLogger(this.getClass());
-        BasicConfigurator.configure();
-        logger.log(Level.ERROR,"level.error");
-        logger.debug("Before+哒哒哒哒哒哒哒哒哒哒哒哒+debug");
-        logger.info("Before+嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟+info");
-        logger.error("error+吼吼吼吼吼吼吼吼吼吼吼吼吼+error");
         String className = joinPoint.getSignature().getDeclaringTypeName();
         String methodName = joinPoint.getSignature().getName();
         Object[] obj = joinPoint.getArgs();
@@ -65,11 +59,6 @@ public class ExceptionLogger {
 
     @After("within(com.luke.*.*.*)")
     public void after(JoinPoint joinPoint) {
-        Logger logger = Logger.getLogger(this.getClass());
-        logger.log(Level.ERROR,"level.error");
-        logger.debug("Before+哒哒哒哒哒哒哒哒哒哒哒哒+debug");
-        logger.info("Before+嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟+info");
-        logger.error("error+吼吼吼吼吼吼吼吼吼吼吼吼吼+error");
         String className = joinPoint.getSignature().getDeclaringTypeName();
         String methodName = joinPoint.getSignature().getName();
         System.out.println("测试@After方法：类" +className+ "方法"+methodName+"已经最终执行");
@@ -77,12 +66,6 @@ public class ExceptionLogger {
 
     @AfterThrowing(throwing="ex",pointcut="within(com.luke.*.*.*)")
     public  void afterThrowing(JoinPoint joinPoint,Throwable ex){
-        Logger logger = Logger.getLogger(this.getClass());
-        BasicConfigurator.configure();
-        logger.log(Level.ERROR,"level.error");
-        logger.debug("Before+哒哒哒哒哒哒哒哒哒哒哒哒+debug");
-        logger.info("Before+嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟+info");
-        logger.error("error+吼吼吼吼吼吼吼吼吼吼吼吼吼+error");
         String className = joinPoint.getSignature().getDeclaringTypeName();
         String methodName = joinPoint.getSignature().getName();
         System.out.println("@AfterThrowing 方法执行测试：" +className+ methodName+"抛出异常");
@@ -94,12 +77,7 @@ public class ExceptionLogger {
 
     @AfterReturning("within(com.luke.*.*.*)")
     public void  afterReturning(JoinPoint joinPoint){
-        Logger logger = Logger.getLogger(this.getClass());
-        BasicConfigurator.configure();
-        logger.log(Level.ERROR,"level.error");
-        logger.debug("Before+哒哒哒哒哒哒哒哒哒哒哒哒+debug");
-        logger.info("Before+嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟嘟+info");
-        logger.error("error+吼吼吼吼吼吼吼吼吼吼吼吼吼+error");
+
         String className = joinPoint.getSignature().getDeclaringTypeName();
         String methodName = joinPoint.getSignature().getName();
         System.out.println("@afterReturning 方法执行测试：" +className+ methodName+"正常执行结束");

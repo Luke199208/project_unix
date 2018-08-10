@@ -55,7 +55,7 @@ public class AccountServiceImpl implements AccountService {
         //1 开启   2 暂停
         //获得创建时间
         Date date = new Date();
-        String dateFormat = String.valueOf(DateFormat.getDateInstance().format(date));
+        String dateFormat = DateFormat.getDateInstance().format(date);
         Account account = mapper.findAccountById(id);
         if (account.getStatus().equals("1")){
             int flag = mapper.setStatePause(id,"2",dateFormat);

@@ -56,27 +56,38 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
+    <!-- 处理异常-->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">/error</prop>
+            </props>
+        </property>
+    </bean>
+
     <!-- 注册拦截器 -->
-    <!--<mvc:interceptors>-->
-        <!--&lt;!&ndash; 登录检查拦截器&ndash;&gt;-->
+    <mvc:interceptors>
+        <!-- 登录检查拦截器-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login/validate.do"/>
+            <mvc:exclude-mapping path="/login/VerifyCodeServlet.do"/>
+            <bean class="com.luke.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+
+        <!-- 判断当前模块拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login/validate.do"/>
+            <mvc:exclude-mapping path="/login/VerifyCodeServlet.do"/>
+            <bean class="com.luke.interceptor.CurrentModuleInterceptor"/>
+        </mvc:interceptor>
+         <!--权限检查拦截器-->
         <!--<mvc:interceptor>-->
             <!--<mvc:mapping path="/**"/>-->
             <!--<mvc:exclude-mapping path="/login/validate.do"/>-->
             <!--<mvc:exclude-mapping path="/login/VerifyCodeServlet.do"/>-->
-            <!--<bean class="com.luke.interceptor.LoginInterceptor"/>-->
+            <!--<bean class="com.luke.interceptor.CheckModuleInterceptor"/>-->
         <!--</mvc:interceptor>-->
-
-        <!--&lt;!&ndash; 判断当前模块拦截器 &ndash;&gt;-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/**"/>-->
-            <!--<bean class="com.luke.interceptor.CurrentModuleInterceptor"/>-->
-        <!--</mvc:interceptor>-->
-        <!--&lt;!&ndash; 权限检查拦截器-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/**"/>-->
-            <!--<mvc:exclude-mapping path="/login/*"/>-->
-            <!--<bean class="com.lanou.interceptor.CheckModuleInterceptor"/>-->
-        <!--</mvc:interceptor>&ndash;&gt;-->
-    <!--</mvc:interceptors>-->
-
+    </mvc:interceptors>
 </beans>

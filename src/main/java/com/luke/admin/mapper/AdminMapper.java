@@ -70,4 +70,5 @@ public interface AdminMapper {
 
     Admin findByCodePasswd(@Param("admin_code") String admin_code,@Param("admin_password") String admin_password);
 
+    List<Module_info> findCurrentAdminModule(Admin admin);
 }

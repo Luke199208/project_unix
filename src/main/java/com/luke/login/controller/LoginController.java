@@ -3,8 +3,10 @@ package com.luke.login.controller;
 
 import com.luke.admin.bean.Admin;
 import com.luke.admin.service.AdminService;
+import com.luke.role.bean.Module_info;
 import com.luke.utils.VerifyCode;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 
 /***
  * com.luke.cost.controller
@@ -61,10 +64,22 @@ public class LoginController {
 
 
     @RequestMapping(value = "/login.do")
-    public String login() {
+    public String login(HttpServletRequest request,Model model) {
+        Admin admin = (Admin) request.getSession().getAttribute("admin");
+        System.out.println(admin);
+        List<Module_info> allModules = adminService.findCurrentAdminModule(admin);
+        for (Module_info allModule : allModules) {
+            System.out.println(allModule);
+        }
+        model.addAttribute("allModules",allModules);
+        int i = 1/0;
         return "main";
-
     }
+//
+//    @RequestMapping("/toNopwer.do")
+//    public String toNopower(){
+//        return "nopower";
+//    }
 
     @RequestMapping(value = "/validate.do",method = RequestMethod.POST)
     @ResponseBody

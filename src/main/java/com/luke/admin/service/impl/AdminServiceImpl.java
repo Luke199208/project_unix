@@ -184,4 +184,10 @@ public class AdminServiceImpl implements AdminService {
         admin_password = AppMD5Util.getMD5(admin_password);
         return mapper.findByCodePasswd(admin_code,admin_password);
     }
+
+    @Override
+    public List<Module_info> findCurrentAdminModule(Admin admin) {
+        List<Module_info> moduleInfos = mapper.findCurrentAdminModule(admin);
+        return moduleInfos;
+    }
 }

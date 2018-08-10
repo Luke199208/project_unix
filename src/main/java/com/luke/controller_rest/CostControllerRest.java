@@ -43,7 +43,7 @@ public class CostControllerRest {
     public String findAll(Model model){
         CostPage page = service.findAll();
         model.addAttribute("costPage",page);
-        return "cost/cost_list";
+        return "/WEB-INF/costlist.jsp";
     }
 
     //点击页码查询
@@ -56,7 +56,7 @@ public class CostControllerRest {
 
         model.addAttribute("costPage",costPage);
 
-        return "cost/cost_list";
+        return "/WEB-INF/costlist.jsp";
     }
 
 
@@ -79,7 +79,7 @@ public class CostControllerRest {
         if (flag){
             CostPage costPage = service.findAll();
             model.addAttribute("costPage",costPage);
-            return "cost/cost_list";
+            return "/WEB-INF/costlist.jsp";
         }else {
             model.addAttribute("msg","保存失败，资费名称重复！");
             model.addAttribute("flag",true);
@@ -94,7 +94,7 @@ public class CostControllerRest {
         CostPage costPage = service.findAll();
         model.addAttribute("costPage",costPage);
         model.addAttribute("msg","成功启用");
-        return "cost/cost_list";
+        return "/WEB-INF/costlist.jsp";
     }
 
     @RequestMapping("/deleteCostById.do")
@@ -104,7 +104,7 @@ public class CostControllerRest {
         CostPage costPage = service.findAll();
         model.addAttribute("costPage",costPage);
         model.addAttribute("msg","删除成功");
-        return "cost/cost_list";
+        return "/WEB-INF/costlist.jsp";
     }
 
     @RequestMapping("/modifyCostT.do")
@@ -131,28 +131,28 @@ public class CostControllerRest {
     public String findAllAscSortByBD(Model model){
         List<Cost> costs = service.findAllAscSortByBD();
         model.addAttribute("costs",costs);
-        return "cost/cost_list";
+        return "/WEB-INF/costlist.jsp";
     }
 
     @RequestMapping("/findAllDecSortByBD.do")
     public String findAllDecSortByBD(Model model){
         List<Cost> costs = service.findAllDecSortByBD();
         model.addAttribute("costs",costs);
-        return "cost/cost_list";
+        return "/WEB-INF/costlist.jsp";
     }
 
     @RequestMapping("/findAllAscSortByBC.do")
     public String findAllAscSortByBC(Model model){
         List<Cost> costs = service.findAllAscSortByBC();
         model.addAttribute("costs",costs);
-        return "cost/cost_list";
+        return "/WEB-INF/costlist.jsp";
     }
 
     @RequestMapping("/findAllDecSortByBC.do")
     public String findAllDecSortByBC(Model model){
         List<Cost> costs = service.findAllDecSortByBC();
         model.addAttribute("costs",costs);
-        return "cost/cost_list";
+        return "/WEB-INF/costlist.jsp";
     }
 
 }

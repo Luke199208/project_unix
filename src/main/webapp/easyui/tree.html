@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Tree - jQuery EasyUI Demo</title>
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.draggable.js"></script>
+    <script type="text/javascript" src="../js/jquery.droppable.js"></script>
+    <link rel="stylesheet" type="text/css" href="../styles/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../styles/icon.css">
+    <link rel="stylesheet" type="text/css" href="../styles/demo.css">
+</head>
+<body>
+<h2>Basic Tree</h2>
+<p>Click the arrow on the left to expand or collapse nodes.</p>
+<div style="margin:20px 0;"></div>
+<div class="easyui-panel" style="padding:5px">
+    <ul id="tt" class="easyui-tree">
+
+    </ul>
+</div>
+<script>
+    $("#tt").tree({
+        url:'/ssm/cost/treeData.do',
+        method:"post",
+        loadFilter:function (data) {
+            if (data.d){
+                return data.d;
+            } else {
+                return data;
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

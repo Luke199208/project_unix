@@ -46,4 +46,6 @@ public interface AdminService {
     boolean modi(Map<String, String> map);
 
     Admin findByCodePasswd(String admin_code, String admin_password);
+
+    List<Module_info> findCurrentAdminModule(Admin admin);
 }
